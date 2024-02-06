@@ -1,21 +1,15 @@
 Package: baskspline
 Title: Weighting via monotonic splines in baskexact
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
-    person("Paul", "Thalmann", , "thalmann@imbi.uni-heidelberg.de", role = c("cre"))
-Description: Extension of the package "baskexact" by allowing the weighting 
-    function to be monotonic splines set by the user. 
+    person("Paul", "Thalmann", , "thalmann@imbi.uni-heidelberg.de", role = "cre")
+Description: Extension of the package "baskexact" by allowing the
+    weighting function to be monotonic splines set by the user.
 License: GPL-3
 Imports: 
-    arrangements,
     baskexact,
-	  doFuture,
-    extraDistr,
-    foreach,
-    ggplot2,
-    methods,
-    Rcpp
-Remotes:  
+    methods
+Remotes: 
     github::lbau7/baskexact
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

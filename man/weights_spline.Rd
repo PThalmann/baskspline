@@ -24,6 +24,25 @@ weights_spline(design, ...)
 \item{...}{Further arguments.}
 
 \item{n}{The sample size per basket.}
+
+\item{diffknots}{A vector of length k. Determines the levels of difference
+at which the corresponding weights, specified in the vector
+\code{weightknots}, are used.}
+
+\item{weightknots}{A vector of length k. Determines the weights for sharing
+at the corresponding level of difference specified in the vector
+\code{diffknots}.}
+
+\item{splinemethod}{The method used for interpolating between the knots
+defined by \code{diffknots} and \code{weightknots}. Possible methods are
+identical to the ones implemented in \code{stats::splinefun}, namely
+"fmm", "periodic", "natural", "monoH.FC" and "hyman".}
+
+\item{clamplim}{A vector of length two. Determines the lower bound and
+upper bound used for clamping.}
+
+\item{weights_spline}{Using splines for weighting whenever weighting is used
+in baskexact, e.g. \code{toer}, \code{pow} or \code{ecd}.}
 }
 \value{
 A matrix including the weights of all possible pairwise outcomes.
@@ -59,7 +78,7 @@ design based on monotonic splines.
 
 }}
 \examples{
-design <- setupOneStageBasket(k = 3, p0 = 0.2)
-toer(design, n = 15, lambda = 0.99, weight_fun = weights_spline)
+design <- baskexact::setupOneStageBasket(k = 3, p0 = 0.2)
+baskexact::toer(design, n = 15, lambda = 0.99, weight_fun = weights_spline)
 
 }

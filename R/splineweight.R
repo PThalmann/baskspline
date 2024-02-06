@@ -1,5 +1,8 @@
 #' @import baskexact
 #'
+#' @importFrom methods setGeneric
+#' @importFrom methods setMethod
+#'
 #' @export
 
 #' @title Weighting via Monotonic Splines
@@ -34,22 +37,45 @@
 #' @export
 #'
 #' @examples
-#' design <- setupOneStageBasket(k = 3, p0 = 0.2)
-#' toer(design, n = 15, lambda = 0.99, weight_fun = weights_spline)
+#' design <- baskexact::setupOneStageBasket(k = 3, p0 = 0.2)
+#' baskexact::toer(design, n = 15, lambda = 0.99, weight_fun = weights_spline)
 #'
 
 
-setGeneric("weights_spline",
+methods::setGeneric("weights_spline",
            function(design, ...) standardGeneric("weights_spline")
 )
 
 #' @describeIn weights_spline Weights for a single-stage basket
 #'   design based on monotonic splines.
 #'
+#' @param weights_spline Using splines for weighting whenever weighting is used
+#' in baskexact, e.g. \code{toer}, \code{pow} or \code{ecd}.
+#'
 #' @param design An object of class \code{Basket} created by
 #'   \code{setupOneStageBasket} or \code{setupTwoStageBasket}.
+#'
 #' @param n The sample size per basket.
-setMethod("weights_spline", "OneStageBasket",
+#'
+#' @param diffknots A vector of length k. Determines the levels of difference
+#' at which the corresponding weights, specified in the vector
+#' \code{weightknots}, are used.
+#'
+#' @param weightknots A vector of length k. Determines the weights for sharing
+#' at the corresponding level of difference specified in the vector
+#' \code{diffknots}.
+#'
+#' @param splinemethod The method used for interpolating between the knots
+#' defined by \code{diffknots} and \code{weightknots}. Possible methods are
+#' identical to the ones implemented in \code{stats::splinefun}, namely
+#' "fmm", "periodic", "natural", "monoH.FC" and "hyman".
+#'
+#' @param clamplim A vector of length two. Determines the lower bound and
+#'  upper bound used for clamping.
+#'
+#'
+#'
+methods::setMethod("weights_spline", "OneStageBasket",
           function(design,
                    n,
                    diffknots = c(1,0.5,0),
@@ -81,7 +107,7 @@ setMethod("weights_spline", "OneStageBasket",
             }
 
             #Define interpolating spline
-            weight_spline <- splinefun(x=diffknots,
+            weight_spline <- stats::splinefun(x=diffknots,
                                        y=weightknots,
                                        method = splinemethod)
 

@@ -2,3 +2,5 @@
 
 export(weights_spline)
 import(baskexact)
+importFrom(methods,setGeneric)
+importFrom(methods,setMethod)
