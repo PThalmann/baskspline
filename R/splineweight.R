@@ -2,7 +2,7 @@
 #'
 #' @export
 
-#' @title Testsplinetitle
+#' @title Weighting via Monotonic Splines
 #'
 #' @param design An object of class \code{Basket} created by
 #'   \code{setupOneStageBasket} or \code{setupTwoStageBasket}.
@@ -67,6 +67,7 @@ setMethod("weights_spline", "OneStageBasket",
             diff_matrix <- matrix(data = NA,
                                   nrow = n_sum,
                                   ncol = n_sum)
+
             #Create diffmatrix containing all possible response combinations
             for(i in 1:n_sum){
               diff_matrix[,i] <- abs((0:n / n) - ((i-1)/ n))
@@ -95,3 +96,7 @@ setMethod("weights_spline", "OneStageBasket",
             class(weight_mat) <- "pp"
             weight_mat
           })
+
+
+
+
