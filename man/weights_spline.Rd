@@ -3,7 +3,7 @@
 \name{weights_spline}
 \alias{weights_spline}
 \alias{weights_spline,OneStageBasket-method}
-\title{Testsplinetitle}
+\title{Weighting via Monotonic Splines}
 \usage{
 weights_spline(design, ...)
 
@@ -29,7 +29,7 @@ weights_spline(design, ...)
 A matrix including the weights of all possible pairwise outcomes.
 }
 \description{
-Testsplinetitle
+Weighting via Monotonic Splines
 }
 \details{
 \code{weights_spline} calculates the weights based on monotonic
@@ -42,6 +42,11 @@ form the knots used for interpolation.
 The weight for two baskets i and j is then found by calculating the
 difference in response rates for binary outcomes and applying the
 interpolating spline.
+
+The \code{clamplim} argument determined specific lower and upper bounds,
+respectively. If a method for interpolation results in values outside these
+bounds, they will be set to the given bound. The default is a lower bound
+of 0 and an upper bound of 1.
 
 The function is generally not called by the user but passed to another
 function such as \code{\link{toer}} and \code{\link{pow}} to specify
