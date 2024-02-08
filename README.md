@@ -6,7 +6,7 @@ Extension of the package "baskexact" ( https://github.com/lbau7/baskexact ) to a
 Installation of the package is done via devtools:
 ```
 # install.packages("devtools")
-devtools::install_github("https://github.com/lbau7/baskexact")
+devtools::install_github("https://github.com/PThalmann/baskspline")
 ```
 
 # Usage
